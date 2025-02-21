@@ -11,7 +11,7 @@ public class Main {
     private static MainService mainService = new MainService();
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(MainService.class, args);
+        SpringApplication.run(Main.class, args);
         mainService.showMenu();
     }
 }

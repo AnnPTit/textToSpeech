@@ -2,6 +2,7 @@ package org.example.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -17,6 +18,7 @@ import com.assemblyai.api.resources.transcripts.types.*;
 
 @Service
 public class MainService {
+    private OllamaServicePromt ollamaServicePromt = new OllamaServicePromt();
     public void showMenu() throws Exception {
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -43,6 +45,19 @@ public class MainService {
                 case 3:
                    speechToText();
                     break;
+                case 4:
+                    System.out.println("Xin chào, Bạn cần giúp gì ? ");
+                    int i = 1;
+                    while (i != 5) {
+                        System.out.println(":");
+                        String promt = scanner.nextLine();
+                        String response = ollamaServicePromt.generateResponse(promt);
+                        System.out.println(response);
+                        if (promt.equals("Kết thúc")) {
+                            i = 5;
+                            break;
+                        }
+                    }
                 case 0:
                     System.out.println("Tạm biệt");
                     return;
@@ -55,6 +70,7 @@ public class MainService {
         System.out.println("|        1. Thêm từ mới.                 |");
         System.out.println("|        2. Kiểm tra từ đã học.          |");
         System.out.println("|        3. Chuyển âm thanh thành văn bản|");
+        System.out.println("|        4. Trợ lý ảo                    |");
         System.out.println("|        0. Thoát chương trình           |");
         System.out.println("|----------------------------------------|");
         System.out.println("Mời bạn nhập chức năng :  ");
