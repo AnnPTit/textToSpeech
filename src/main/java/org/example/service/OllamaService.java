@@ -1,16 +1,10 @@
 package org.example.service;
 
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import org.example.model.OllamaResponse;
+import org.example.dto.OllamaResponse;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
-import okhttp3.*;
-
-import java.io.IOException;
 
 @Service
 public class OllamaService {

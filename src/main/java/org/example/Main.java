@@ -5,13 +5,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-@SpringBootApplication
-@EnableConfigurationProperties({ LiquibaseProperties.class})
-public class Main {
-    private static MainService mainService = new MainService();
+import org.springframework.context.ApplicationContext;
 
+@SpringBootApplication
+@EnableConfigurationProperties({LiquibaseProperties.class})
+public class Main {
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(Main.class, args);
+        ApplicationContext context = SpringApplication.run(Main.class, args);
+        // Lấy MainService từ Spring Context
+        MainService mainService = context.getBean(MainService.class);
         mainService.showMenu();
     }
 }

@@ -13,4 +13,60 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="2" author="jhipster">
+        <createTable tableName="new_word">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="english_word" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="meaning" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="status" type="integer">
+                <constraints nullable="true"/>
+            </column>
+            <column name="id_topic" type="bigint">
+                <constraints nullable="true"/>
+            </column>
+            <column name="last_modified_date" type="datetime">
+                <constraints nullable="true"/>
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+        <dropDefaultValue tableName="new_word" columnName="last_modified_date" columnDataType="datetime"/>
+    </changeSet>
+
+    <changeSet id="3" author="jhipster">
+        <createTable tableName="topic">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="id_topic" type="bigint">
+                <constraints nullable="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <changeSet author="liquibase-docs" id="4">
+        <addColumn tableName="new_word">
+            <column name="isStudied"
+                    type="int"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="liquibase-docs" id="5">
+        <renameColumn
+                columnDataType="int"
+                newColumnName="is_studied"
+                oldColumnName="isStudied"
+                remarks="A String"
+                tableName="new_word"/>
+    </changeSet>
+
 </databaseChangeLog>
