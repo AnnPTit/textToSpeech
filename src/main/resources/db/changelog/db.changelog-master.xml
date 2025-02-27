@@ -69,4 +69,24 @@
                 tableName="new_word"/>
     </changeSet>
 
+    <changeSet id="6" author="an">
+        <createTable tableName="word">
+            <column name="id" type="varchar(50)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="word" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="lexical_category" type="varchar(50)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="meaning" type="varchar(500)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="type" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
 </databaseChangeLog>
