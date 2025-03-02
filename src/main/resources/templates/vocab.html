@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Học Từ Vựng</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script>
+        let vocabList = [];
+        let currentIndex = 0;
+        let correct = 0;
+        let lang = "";
+
+        // Lấy chủ đề từ URL
+        function getTopicFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            console.log(params);
+            lang = params.get("lang") || "en";
+            return params.get("topic") || "time"; // Nếu không có, dùng "default"
+        }
+
+        async function fetchVocab() {
+            const topic = getTopicFromURL();
+            const response = await fetch(`/api/vocab/${topic}`);
+            vocabList = await response.json();
+            currentIndex = 0;
+            showWord();
+        }
+
+        function showWord() {
+            if (currentIndex >= vocabList.length) {
+                let point = (correct / vocabList.length) * 10; // Tính điểm chính xác
+                document.getElementById("card").innerHTML = `<h2>Hoàn thành! Điểm của bạn là: ${point.toFixed(2)}</h2>`;
+
+                setTimeout(() => {
+                    window.location.href = "/topic";
+                }, 5000);
+                return;
+            }
+
+            const wordData = vocabList[currentIndex].split(",");
+            document.getElementById("word").textContent = wordData[3];
+            document.getElementById("wordType").textContent = "(" + wordData[2] + ")";
+            document.getElementById("user-input").value = "";
+            document.getElementById("result").textContent = "";
+        }
+
+        function checkAnswer() {
+            const wordData = vocabList[currentIndex].split(",");
+            const correctAnswer = wordData[1]; // Nghĩa tiếng Anh
+            const userAnswer = document.getElementById("user-input").value.trim();
+
+            if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+                document.getElementById("result").textContent = "✅ Chính xác!";
+                setTimeout(() => {
+                    currentIndex++;
+                    correct++;
+                    showWord();
+                }, 1000);
+            } else {
+                document.getElementById("result").textContent = "❌ Sai rồi! Hãy thử lại.";
+                document.getElementById("answer").textContent = "Đáp án : " + correctAnswer;
+                setTimeout(() => {
+                    document.getElementById("answer").textContent = "";
+                    currentIndex++;
+                    showWord();
+                }, 1000);
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                checkAnswer();
+            }
+        }
+    </script>
+</head>
+<body onload="fetchVocab('time')">
+<h1>Học Từ Vựng</h1>
+<div id="card">
+    <h2 id="word">Loading...</h2>
+    <h4 id="wordType">Loading...</h4>
+    <input type="text" id="user-input"
+           placeholder="Nhập câu trả lời"
+           onkeydown="handleKeyPress(event)"
+           style="width: 100%; max-width: 200px; padding: 12px 15px; font-size: 16px; border: 2px solid #ccc; border-radius: 25px; outline: none; transition: 0.3s ease-in-out; box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);"
+           onfocus="this.style.borderColor='#4CAF50'; this.style.boxShadow='0px 4px 8px rgba(76, 175, 80, 0.3)';"
+           onblur="this.style.borderColor='#ccc'; this.style.boxShadow='0px 2px 5px rgba(0, 0, 0, 0.1)';">
+    <p id="result"></p>
+    <p id="answer"></p>
+</div>
+</body>
+</html>

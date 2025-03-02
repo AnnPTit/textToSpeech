@@ -2,11 +2,11 @@ package org.example.controller;
 
 import org.example.service.OllamaService;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
-
-import java.io.IOException;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/ollama")

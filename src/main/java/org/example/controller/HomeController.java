@@ -1,0 +1,40 @@
+package org.example.controller;
+
+import lombok.RequiredArgsConstructor;
+import org.example.service.WordService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+@Controller
+@RequiredArgsConstructor(onConstructor_ = {@Autowired})
+public class HomeController {
+
+    private final WordService wordService;
+
+    @GetMapping("/topic")
+    public String showTopic(Model model) {
+        model.addAttribute("topics", wordService.showTopic());
+        return "topic";
+    }
+
+    @GetMapping("/gramar")
+    public String gramar(Model model) {
+//        model.addAttribute("topics", wordService.showTopic());
+        return "gramar";
+    }
+
+    @GetMapping("/vocab")
+    public String vocab(Model model) {
+//        model.addAttribute("topic", topic);
+//        System.out.println("Hehe");
+        return "vocab";
+    }
+
+    @GetMapping("/")
+    public String home() {
+        return "index"; // Trả về file index.html trong thư mục templates
+    }
+}

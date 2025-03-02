@@ -26,7 +26,7 @@ public class MainService {
     @Autowired
     private OllamaServicePromt ollamaServicePromt;
     @Autowired
-    private WordService wordService;
+    private NewWordService newWordService;
 
     public void showMenu() throws Exception {
         Scanner scanner = new Scanner(System.in);
@@ -80,14 +80,14 @@ public class MainService {
             String choose = scanner.nextLine();
             switch (choose) {
                 case "1":
-                    List<String> topics = wordService.showTopic();
+                    List<String> topics = newWordService.showTopic();
                     for (String topic : topics) {
                         System.out.println("Topic : " + topic);
                     }
                     if (!topics.isEmpty()) {
                         System.out.println("Mời bạn nhập topic : ");
                         String topic = scanner.nextLine();
-                        List<NewWord> wordsInTopics = wordService.showWordTopic(topic);
+                        List<NewWord> wordsInTopics = newWordService.showWordTopic(topic);
                         if (!wordsInTopics.isEmpty()) {
                             int maxEnglishLength = 0;
                             for (NewWord word : wordsInTopics) {
@@ -100,7 +100,7 @@ public class MainService {
                     }
                     break;
                 case "2":
-                    List<NewWord> words = wordService.getWordOrderByTime();
+                    List<NewWord> words = newWordService.getWordOrderByTime();
                     int maxEnglishLength = 0;
                     for (NewWord word : words) {
                         if (word.getEnglishWord().length() > maxEnglishLength) {
@@ -139,7 +139,7 @@ public class MainService {
     }
 
     private void checkMeanEV(Scanner scanner, String input) {
-        List<NewWord> wordList = wordService.getWordOrderByTime();
+        List<NewWord> wordList = newWordService.getWordOrderByTime();
         int wordListSize = wordList.size();
         int correct = 0;
         List<Integer> random = DataUtil.generateRandomList(Math.min(wordListSize, 25));
@@ -210,7 +210,7 @@ public class MainService {
         word.setIdTopic(Long.parseLong(topic));
         word.setStatus(1);
         word.setLastModifiedDate(Instant.now());
-        wordService.saveNewWord(word);
+        newWordService.saveNewWord(word);
     }
 
     private void mainMenu() {

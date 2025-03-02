@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ngữ pháp</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script>
+        async function handleGramar() {
+            const sentence = document.getElementById("text-input").value.trim();
+            if (!sentence) {
+                alert("Vui lòng nhập câu!");
+                return;
+            }
+
+            console.log("Gửi câu:", sentence);
+            document.getElementById("result").innerText = "Đang kiểm tra...";
+
+            try {
+                const response = await fetch("/api/gramar", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ sentence: sentence })
+                });
+
+                if (!response.ok) {
+                    throw new Error("Lỗi server");
+                }
+
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                let resultText = "";
+
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+
+                    const chunk = decoder.decode(value, { stream: true });
+                    resultText += chunk;
+                    document.getElementById("result").innerText = resultText;
+                }
+
+                console.log("Phản hồi hoàn tất:", resultText);
+            } catch (error) {
+                console.error("Lỗi:", error);
+            }
+        }
+    </script>
+
+</head>
+<body>
+
+<h1>Hãy viết một đoạn văn</h1>
+
+<textarea id="text-input" placeholder="Nhập đoạn văn của bạn..."
+          style="width: 100%; max-width: 600px; height: 200px; padding: 10px; font-size: 16px; border: 2px solid #ccc; border-radius: 8px; outline: none; transition: 0.3s;">
+    </textarea>
+
+<br>
+<p id="result" class="mt-3"
+   style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; width: 100%;">
+</p>
+
+<button style="margin-top: 10px; padding: 10px 15px; font-size: 16px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;"
+        onclick="handleGramar()">
+    Kiểm tra
+</button>
+
+</body>
+</html>

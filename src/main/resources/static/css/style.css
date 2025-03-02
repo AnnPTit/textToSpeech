@@ -1,0 +1,74 @@
+/* Định dạng toàn bộ trang */
+body {
+    font-family: "Poppins", Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Tiêu đề h1 */
+h1 {
+    font-size: 36px;
+    color: #2c3e50;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Danh sách */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* Mục trong danh sách */
+li {
+    background: #fff;
+    margin: 10px auto;
+    padding: 15px 20px;
+    width: 50%;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    font-size: 20px;
+    font-weight: bold;
+    color: #34495e;
+}
+
+/* Hiệu ứng hover cho từng mục */
+li:hover {
+    transform: scale(1.05);
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+    color: #e74c3c; /* Đổi màu chữ khi hover */
+    cursor: pointer;
+}
+
+.text-input {
+    width: 100%;
+    max-width: 600px;
+    height: 200px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s;
+}
+
+/* Hiệu ứng động cho tiêu đề */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+

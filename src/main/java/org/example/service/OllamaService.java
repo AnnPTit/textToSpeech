@@ -20,7 +20,7 @@ public class OllamaService {
         return webClient.post()
                 .uri("/api/generate")
                 .contentType(MediaType.APPLICATION_JSON)
-                .bodyValue("{\"model\": \"gemma2:2b\", \"prompt\": \"" + prompt + "\"}")
+                .bodyValue("{\"model\": \"gemma2:9b\", \"prompt\": \"" + prompt + "\"}")
                 .retrieve()
                 .bodyToFlux(OllamaResponse.class)  // Chuyển đổi JSON thành Object
                 .map(OllamaResponse::getResponse); // Chỉ lấy phần response của JSON

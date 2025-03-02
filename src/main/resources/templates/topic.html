@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Trang chủ</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script>
+        async function fetchVocab(topic) {
+            const response = await fetch(`/api/vocab/${topic}`);
+            const data = await response.json();
+            console.log(data);
+            const vocabList = document.getElementById("vocab-list");
+            vocabList.innerHTML = `<h2>${topic}</h2><ul>` +
+                data.map(word => `<li>${word}</li>`).join("") + "</ul>";
+        }
+    </script>
+</head>
+<body>
+<h1>Danh sách các chủ đề</h1>
+<ul>
+    <li th:each="topic : ${topics}"
+        th:text="${topic}"
+        th:attr="onclick='window.location.href=\'/vocab?topic=' + @{${topic}} + '\''">
+    </li>
+</ul>
+
+
+<div id="vocab-list"></div> <!-- Khu vực hiển thị kết quả -->
+</body>
+</html>
