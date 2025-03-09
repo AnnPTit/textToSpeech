@@ -18,4 +18,8 @@ public class WordService {
     public List<String> showTopicContent(String topic) {
         return repository.showTopicContent(topic);
     }
+
+    public List<String> lexicalCategory() {
+        return repository.lexicalCategory();
+    }
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 import java.util.Map;
@@ -27,13 +28,16 @@ public class WordController {
     }
 
     @PostMapping(value = "/gramar", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<String> checkGramar(@RequestBody Map<String, String> request) {
+    public Mono<String> checkGramar(@RequestBody Map<String, String> request) {
         String sentence = request.get("sentence");
         System.out.println("Câu nhận được: " + sentence);
 
-        String prompt = "Can you check the grammar of this sentence for me? : " + sentence;
+        String prompt = "Can you check the grammar of this sentence for me? : " + sentence + ". Answer in Vietnamese";
+
 
         return ollamaService.generateResponse(prompt)
+                .collectList() // Thu thập tất cả phản hồi thành một danh sách
+                .map(responses -> String.join(" ", responses)) // Ghép tất cả phần tử thành một chuỗi
                 .doOnNext(response -> System.out.println("Phản hồi AI: " + response));
     }
 

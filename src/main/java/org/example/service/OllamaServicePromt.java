@@ -14,7 +14,7 @@ public class OllamaServicePromt {
 
 
     public String generateResponse(String prompt) {
-        String jsonRequest = "{\"model\": \"deepseek-r1:8b\", \"prompt\": \"" + prompt + "\", \"stream\": true}";
+        String jsonRequest = "{\"model\": \"gemma2:9b\", \"prompt\": \"" + prompt + "\", \"stream\": true}";
 
         RequestBody body = RequestBody.create(jsonRequest, MediaType.get("application/json"));
         Request request = new Request.Builder()

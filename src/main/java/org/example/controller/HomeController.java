@@ -33,6 +33,13 @@ public class HomeController {
         return "vocab";
     }
 
+    @GetMapping("/note")
+    public String note(Model model) {
+        model.addAttribute("lexicalCategory", wordService.lexicalCategory());
+        return "note";
+    }
+
+
     @GetMapping("/")
     public String home() {
         return "index"; // Trả về file index.html trong thư mục templates

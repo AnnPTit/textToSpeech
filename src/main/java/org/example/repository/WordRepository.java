@@ -15,4 +15,7 @@ public interface WordRepository extends JpaRepository<Word, String> {
 
     @Query(value = "select * from word w where w.type =:type", nativeQuery = true)
     List<String> showTopicContent(@Param("type") String topic);
+
+    @Query(value = "select lexical_category from word w group by lexical_category", nativeQuery = true)
+    List<String> lexicalCategory();
 }
