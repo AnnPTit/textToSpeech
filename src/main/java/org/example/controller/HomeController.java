@@ -39,6 +39,13 @@ public class HomeController {
         return "note";
     }
 
+    @GetMapping("/translate")
+    public String translate(Model model) {
+//        model.addAttribute("lexicalCategory", wordService.lexicalCategory());
+        return "translate";
+    }
+
+
 
     @GetMapping("/")
     public String home() {

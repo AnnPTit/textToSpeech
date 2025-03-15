@@ -41,4 +41,9 @@ public class WordController {
                 .doOnNext(response -> System.out.println("Phản hồi AI: " + response));
     }
 
+    @PostMapping("/note")
+    private String note(@RequestBody Map<String, String> request) {
+        System.out.println(request);
+        return wordService.note(request);
+    }
 }
