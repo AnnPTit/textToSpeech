@@ -47,6 +47,15 @@
             cursor: pointer;
             margin-top: 10px;
         }
+
+        .speaker-icon {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
     </style>
     <script>
         async function getLang() {
@@ -97,9 +106,6 @@
             const lang1 = document.getElementById("languageSelect").value;
             const lang2 = document.getElementById("languageSelectTranslate").value;
             const result = document.getElementById("result");
-            console.log(promt);
-            console.log(lang1);
-            console.log(lang2);
 
             try {
                 const response = await fetch('https://api.englishtop.vn/api/translates', {
@@ -122,7 +128,7 @@
                         text: promt,
                         settings: {
                             type: 'text',
-                            without_english:false
+                            without_english: false
                         }
                     })
                 });
@@ -133,6 +139,65 @@
                 console.error("Lỗi:", error);
             }
         }
+
+        async function speakText(textareaId) {
+            const text = document.getElementById(textareaId).value;
+            const lang1 = document.getElementById("languageSelect").value;
+            const lang2 = document.getElementById("languageSelectTranslate").value;
+            if (text.trim() === "") {
+                alert("Không có văn bản để đọc!");
+                return;
+            }
+
+            console.log(textareaId);
+            console.log(lang1);
+            console.log(lang2);
+            let langFinal;
+            if (textareaId === 'promt') {
+                langFinal = lang1;
+            } else {
+                langFinal = lang2;
+            }
+            let b64 = await getSound(text, langFinal);
+            b64AudioFile = "data:audio/mpeg;base64," + b64.data;
+            let audioPlayer = document.getElementById("audio-player")
+            audioPlayer.src = b64AudioFile;
+            audioPlayer.play().catch(error => console.error("Error playing audio:", error));
+        }
+
+        async function getSound(text, langF) {
+            try {
+                const response = await fetch('https://api.englishtop.vn/api/chats/tts', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Accept-Language': 'vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5',
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiMmI4MmMwMGM0ZjI1ZjRjYzhmOTNlMzE3ODBkZjEwNTk1NmRjMDFlMmU0MjU1YTUzOGI1MjhjOGRmYTcwNzEzNGE0MGY5MWIxY2ZmY2ZjNmIiLCJpYXQiOjE3NDAwNjE5NDUuMDYwNzAzLCJuYmYiOjE3NDAwNjE5NDUuMDYwNzA4LCJleHAiOjE3NzE1OTc5NDUuMDU3NDYsInN1YiI6IjI2NjYiLCJzY29wZXMiOltdfQ.k1iuljqqOhPXYRAMTwJ8aK4M-T5YOlinDcAuZRWLxzErKU57L0PZrKyFnI_UtM-EeB5jokkLLrvAmXl-x_ePmOKMIEZDOmXTS2McOkj-Wr4v3L0CcD7ammy_xev0OXNG6h37G-92EyMI6m5kYt8jTvIZsyg_Ch6GQc-of3PHAmaCKhfVZWSvUj8y4sJLmX5XGOiv-L9661jRYUUGmL7eO8DNwy38OUNPXChprAz4a6FcfPhS5Rl_kI1CDxND6tps7SPCTZtYPjl6bPD6aobU_wzP6EEdkOjgSSmHxnS3zAj6gT5JB9MsWOy0ee7YFh3oUtDoe4cyRJAC7IlfBO-9jNLNKh4JXIMo1dsM_4dDaR6eR5gaQmUcxxj-v_3fU21zPK14qVA8BEE1no5r9jrjOlwPFVUhEbHxfnCn_vVqZTAZmMyiKCFlfo1qB7cVzVXK8YFNb-XAqg8lNQHXTW4_4pCJgbTe5m50156fz_zpj1201gJgLhjjNBGS_rj52T6wjKyU1UBpHtQNMQTLX9Hse2qo8ZB4YRPmfn8M2av-aY5DDe7ddf4GStr44SwSNc0lhL2D3lYuYH6AcsIWjDlFEkUXnUsWpMKOUCHFtH2OiLK4G3Fow8S4tcgpY2Ar8vn1z_jKpfp1kSSaaDKrzN6R8r9jYkS7dm8FAXV73ou-ld8`,
+                        'tokenApi': '2y12Mt3zwhPRAh3eKAJNjKV.julJr.YHYJaAIDlPl1h43oRdOoiceZYFy',
+                        'Access-Control-Allow-Origin': 'http://localhost:8080',
+                        'access-control-allow-credentials': 'true',
+                        'access-control-allow-headers': '*',
+                        'access-control-allow-methods': '*',
+                        'oorigin': 'https://englishtop.vn'
+
+                    },
+                    body: JSON.stringify({text, lang: langF})
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const data = await response.json(); // Giả sử API trả về JSON
+                console.log("Phản hồi từ API:", data);
+                return data;
+            } catch (error) {
+                console.error("Lỗi khi gọi API:", error);
+                return null;
+            }
+        }
+
 
         window.onload = getLang;
 
@@ -149,9 +214,18 @@
         <select id="languageSelectTranslate">
         </select>
     </div>
-    <textarea id="promt" class="textbox" placeholder="Nhập văn bản..."></textarea>
-    <textarea id="result" class="textbox" readonly></textarea>
+    <div style="position: relative;">
+        <textarea id="promt" class="textbox" placeholder="Nhập văn bản..."></textarea>
+        <span class="speaker-icon" onclick="speakText('promt')">🔊</span>
+    </div>
+    <div style="position: relative;">
+        <textarea id="result" class="textbox" readonly></textarea>
+        <span class="speaker-icon" onclick="speakText('result')">🔊</span>
+    </div>
     <button class="translate-btn" onclick="translateW()">Dịch</button>
+</div>
+<div style="visibility: hidden">
+    <audio id="audio-player" controls></audio>
 </div>
 </body>
 </html>
