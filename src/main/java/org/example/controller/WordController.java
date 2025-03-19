@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import org.example.dto.SentenceDto;
 import org.example.service.OllamaService;
 import org.example.service.WordService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,8 @@ public class WordController {
     private WordService wordService;
 
     @Autowired
-    OllamaService ollamaService;
+    private OllamaService ollamaService;
+
 
 
     @GetMapping("/vocab/{topic}")
@@ -45,5 +47,10 @@ public class WordController {
     private String note(@RequestBody Map<String, String> request) {
         System.out.println(request);
         return wordService.note(request);
+    }
+
+    @GetMapping("/sentence/generate")
+    private List<SentenceDto> generate() {
+        return wordService.generateSentence();
     }
 }

@@ -46,6 +46,10 @@ public class HomeController {
     }
 
 
+    @GetMapping("/word-rearrange")
+    public String wordRearRange() {
+        return "word-rearrange";
+    }
 
     @GetMapping("/")
     public String home() {

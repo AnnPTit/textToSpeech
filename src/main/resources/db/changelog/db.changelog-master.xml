@@ -88,5 +88,30 @@
             </column>
         </createTable>
     </changeSet>
+    <changeSet id="7" author="an">
+        <addColumn tableName="word">
+            <column name="is_studied" type="int(1)"></column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="8" author="an">
+        <createTable tableName="sentence">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="tenses" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="sentence" type="varchar(500)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="9" author="an">
+        <addColumn tableName="sentence">
+            <column name="sentence_eng" type="varchar(500)"></column>
+        </addColumn>
+    </changeSet>
 
 </databaseChangeLog>

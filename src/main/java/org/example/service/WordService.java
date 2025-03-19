@@ -1,18 +1,22 @@
 package org.example.service;
 
+import org.example.domain.Sentence;
 import org.example.domain.Word;
+import org.example.dto.SentenceDto;
+import org.example.repository.SentenceRepository;
 import org.example.repository.WordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class WordService {
     @Autowired
     private WordRepository repository;
+
+    @Autowired
+    private SentenceRepository sentenceRepository;
 
     public List<String> showTopic() {
         return repository.showTopic();
@@ -45,5 +49,42 @@ public class WordService {
             e.printStackTrace();
             return "Lỗi";
         }
+    }
+
+    public List<SentenceDto> generateSentence() {
+        List<SentenceDto> list = new ArrayList<>();
+        List<Sentence> result = sentenceRepository.findAll();
+        if (!result.isEmpty()) {
+            // Thuc hien bam cau
+            for (Sentence sentence : result) {
+                String[] sentenceShuffle = shuffleSentence(sentence.getSentence());
+                String[] sentenceShuffleEng = shuffleSentence(sentence.getSentenceEng());
+                SentenceDto sentenceDto = SentenceDto.builder()
+                        .sentenceCorrect(sentence.getSentence())
+                        .sentenceHash(sentenceShuffle)
+                        .id(sentence.getId())
+                        .sentenceCorrectEng(sentence.getSentenceEng())
+                        .sentenceHashEng(sentenceShuffleEng)
+                        .build();
+                list.add(sentenceDto);
+            }
+        }
+        return list;
+    }
+
+    private String[] shuffleSentence(String sentence) {
+        if (sentence == null || sentence.trim().isEmpty()) {
+            return new String[0];
+        }
+
+        // Tách câu thành các từ
+        String[] words = sentence.split("\\s+");
+
+        // Trộn ngẫu nhiên các từ
+        List<String> wordList = Arrays.asList(words);
+        Collections.shuffle(wordList);
+
+        // Chuyển danh sách về mảng
+        return wordList.toArray(new String[0]);
     }
 }

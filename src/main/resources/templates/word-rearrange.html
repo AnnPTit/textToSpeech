@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghép câu</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        #wordContainer, #sentenceContainer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 10px;
+            border: 1px solid #000;
+            min-height: 50px;
+        }
+
+        .word {
+            padding: 5px 10px;
+            background-color: lightblue;
+            cursor: pointer;
+            border: 1px solid blue;
+        }
+    </style>
+</head>
+<body>
+<h3>Ghép lại câu đúng</h3>
+<div id="wordContainer"></div>
+<h4>Ghép lại ở đây:</h4>
+<div id="sentenceContainer"></div>
+<button onclick="checkSentence()">Kiểm tra</button>
+<p id="result"></p>
+
+<script>
+    let words = "";
+
+    async function getShuffleSentence() {
+        const response = await fetch(`/api/sentence/generate`);
+        const result = await response.json();
+        result.forEach(word => {
+            // words = word.sentenceHash;
+            createWordBlocks(word.sentenceHash)
+        });
+    }
+
+    function createWordBlocks(words) {
+        const wordContainer = document.getElementById("wordContainer");
+        wordContainer.innerHTML = "";
+        words.forEach(word => {
+            let span = document.createElement("span");
+            span.textContent = word;
+            span.classList.add("word");
+            span.onclick = function () {
+                moveWord(span);
+            };
+            wordContainer.appendChild(span);
+        });
+    }
+
+    function moveWord(wordElement) {
+        const targetContainer = document.getElementById("sentenceContainer");
+        targetContainer.appendChild(wordElement);
+    }
+
+    function checkSentence() {
+        let userSentence = Array.from(document.getElementById("sentenceContainer").children)
+            .map(el => el.textContent)
+            .join(" ");
+        document.getElementById("result").textContent = userSentence === originalSentence
+            ? "Chính xác!"
+            : "Sai rồi, thử lại!";
+    }
+
+    window.onload = getShuffleSentence();
+
+    createWordBlocks();
+</script>
+</body>
+</html>
