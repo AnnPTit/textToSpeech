@@ -6,6 +6,8 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/custom.css}">
     <script>
+        let data = [];
+
         async function handleGramar() {
             const word = document.getElementById("word").value.trim();
             const meaning = document.getElementById("meaning").value.trim();
@@ -29,10 +31,26 @@
                         lexical: lexical
                     })
                 });
-
-                console.log("Phản hồi hoàn tất:", response);
+                alert("Thành công");
+                window.location.reload();
             } catch (error) {
                 console.error("Lỗi:", error);
+            }
+        }
+
+        async function onDelete(element) {
+            const id = element.getAttribute("data-id"); // Lấy ID từ thuộc tính data-id
+            if (confirm("Bạn chắc chắn muốn xóa?")) {
+                try {
+                    const response = await fetch("/api/note/delete/" + id, {
+                        method: "DELETE",
+                        headers: {"Content-Type": "application/json"}
+                    });
+                    alert("Thành công");
+                    window.location.reload();
+                } catch (error) {
+                    console.error("Lỗi:", error);
+                }
             }
         }
     </script>
@@ -62,6 +80,14 @@
         onclick="handleGramar()">
     Lưu
 </button>
+
+<ul>
+    <li th:each="item : ${dataLts}"
+        th:text="${item.getWord()} + ' - (' + ${item.getLexicalCategory()} + ')' + ' - ' + ' | ' + ${item.getMeaning()}"
+        th:attr="data-id=${item.getId()}"
+        onclick="onDelete(this)">
+    </li>
+</ul>
 
 </body>
 </html>

@@ -1,5 +1,6 @@
 package org.example.service;
 
+import jakarta.transaction.Transactional;
 import org.example.domain.Word;
 import org.example.repository.WordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Service
+@Transactional
 public class WordService {
     @Autowired
     private WordRepository repository;
@@ -18,7 +20,7 @@ public class WordService {
         return repository.showTopic();
     }
 
-    public List<String> showTopicContent(String topic) {
+    public List<Word> showTopicContent(String topic) {
         return repository.showTopicContent(topic);
     }
 
@@ -44,6 +46,17 @@ public class WordService {
         } catch (Exception e) {
             e.printStackTrace();
             return "Lỗi";
+        }
+    }
+
+    public void delete(String id) {
+        try {
+            Word entity = repository.findById(id).orElse(null);
+            if (entity != null) {
+                repository.delete(entity);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

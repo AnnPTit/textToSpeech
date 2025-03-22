@@ -5,7 +5,6 @@ import org.example.service.WordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
@@ -22,10 +21,10 @@ public class WordController {
     OllamaService ollamaService;
 
 
-    @GetMapping("/vocab/{topic}")
-    public List<String> getVocab(@PathVariable String topic) {
-        return wordService.showTopicContent(topic);
-    }
+//    @GetMapping("/vocab/{topic}")
+//    public List<String> getVocab(@PathVariable String topic) {
+//        return wordService.showTopicContent(topic);
+//    }
 
     @PostMapping(value = "/gramar", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Mono<String> checkGramar(@RequestBody Map<String, String> request) {
@@ -45,5 +44,11 @@ public class WordController {
     private String note(@RequestBody Map<String, String> request) {
         System.out.println(request);
         return wordService.note(request);
+    }
+
+    @DeleteMapping("/note/delete/{id}")
+    private void delete(@PathVariable("id") String id) {
+        System.out.println("hehe");
+        wordService.delete(id);
     }
 }
