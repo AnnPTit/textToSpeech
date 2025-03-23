@@ -24,7 +24,8 @@
     </style>
 </head>
 <body>
-<h3>Ghép lại câu đúng</h3>
+<h2>Ghép lại câu đúng</h2>
+<h4 id="sentenceQou" style="text-decoration: underline"></h4>
 <div id="wordContainer"></div>
 <h4>Ghép lại ở đây:</h4>
 <div id="sentenceContainer"></div>
@@ -32,20 +33,37 @@
 <p id="result"></p>
 
 <script>
-    let words = "";
+    let words = [];
+    let originalSentence = "";
+    let currentIndex = 0;
+    let correct = 0;
 
     async function getShuffleSentence() {
         const response = await fetch(`/api/sentence/generate`);
-        const result = await response.json();
-        result.forEach(word => {
-            // words = word.sentenceHash;
-            createWordBlocks(word.sentenceHash)
-        });
+        words = await response.json();
+        currentIndex = 0;
+        handleWords();
     }
 
-    function createWordBlocks(words) {
+    function handleWords() {
+        if (currentIndex < words.length) {
+            const word = words[currentIndex];
+            console.log(word);
+            createWordBlocks(word.sentenceHashEng, word.sentenceCorrect);
+            originalSentence = word.sentenceCorrectEng;
+        } else {
+            setTimeout(() => {
+                window.location = "/";
+            }, 2000)
+        }
+    }
+
+    function createWordBlocks(words, sentenceCorrect) {
         const wordContainer = document.getElementById("wordContainer");
+        const sentenceQou = document.getElementById("sentenceQou");
         wordContainer.innerHTML = "";
+        sentenceQou.innerText = "\"" + sentenceCorrect + "\"";
+
         words.forEach(word => {
             let span = document.createElement("span");
             span.textContent = word;
@@ -58,22 +76,40 @@
     }
 
     function moveWord(wordElement) {
-        const targetContainer = document.getElementById("sentenceContainer");
-        targetContainer.appendChild(wordElement);
+        const wordContainer = document.getElementById("wordContainer");
+        const sentenceContainer = document.getElementById("sentenceContainer");
+
+        // Kiểm tra nếu phần tử đang ở wordContainer thì di chuyển sang sentenceContainer
+        if (wordElement.parentElement === wordContainer) {
+            sentenceContainer.appendChild(wordElement);
+        } else {
+            wordContainer.appendChild(wordElement);
+        }
     }
 
     function checkSentence() {
         let userSentence = Array.from(document.getElementById("sentenceContainer").children)
             .map(el => el.textContent)
             .join(" ");
-        document.getElementById("result").textContent = userSentence === originalSentence
-            ? "Chính xác!"
-            : "Sai rồi, thử lại!";
+
+        if (userSentence === originalSentence) {
+            currentIndex++;
+            correct++;
+            document.getElementById("result").textContent =
+                "Chính xác!"
+        } else {
+            document.getElementById("result").textContent =
+                "Sai rồi, thử lại!"
+        }
+        setTimeout(() => {
+            document.getElementById("sentenceContainer").textContent = "";
+            document.getElementById("result").textContent = ""
+        }, 1000)
+
+        handleWords();
     }
 
-    window.onload = getShuffleSentence();
-
-    createWordBlocks();
+    getShuffleSentence();
 </script>
 </body>
 </html>
