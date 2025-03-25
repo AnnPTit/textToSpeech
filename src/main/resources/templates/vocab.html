@@ -8,16 +8,13 @@
         let vocabList = [];
         let currentIndex = 0;
         let correct = 0;
-        let lang = "";
-        let w = 3;
-        let m = 1;
+        let lang = true;
         let b64AudioFile;
 
         // Lấy chủ đề từ URL
         function getTopicFromURL() {
             const params = new URLSearchParams(window.location.search);
             console.log(params);
-            lang = params.get("lang") || "en";
             return params.get("topic") || "time"; // Nếu không có, dùng "default"
         }
 
@@ -40,18 +37,19 @@
                 return;
             }
 
-            const wordData = vocabList[currentIndex].split(",");
-            document.getElementById("word").textContent = wordData[w];
-            document.getElementById("wordType").textContent = "(" + wordData[2] + ")";
+            const wordData = vocabList[currentIndex];
+            document.getElementById("word").textContent = lang ? wordData.word : wordData.meaning;
+            document.getElementById("wordType").textContent = "(" + wordData.type + ")";
             document.getElementById("user-input").value = "";
             document.getElementById("result").textContent = "";
         }
 
         function checkAnswer() {
-            const wordData = vocabList[currentIndex].split(",");
-            const correctAnswer = wordData[m]; // Nghĩa tiếng Anh
+            const wordData = vocabList[currentIndex];
+            const correctAnswer = lang ? wordData.meaning : wordData.word; // Nghĩa tiếng Anh
             const userAnswer = document.getElementById("user-input").value.trim();
 
+            console.log(correctAnswer);
             if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
                 document.getElementById("result").textContent = "✅ Chính xác!";
                 setTimeout(() => {
@@ -77,9 +75,9 @@
         }
 
         async function makeSound() {
-            const wordData = vocabList[currentIndex].split(",");
-            console.log(wordData[w]);
-            let b64 = await getSound(wordData[w]);
+            const wordData = vocabList[currentIndex];
+            const word = lang ? wordData.word : wordData.meaning;
+            let b64 = await getSound(word);
             b64AudioFile = "data:audio/mpeg;base64," + b64.data;
             let audioPlayer = document.getElementById("audio-player")
             audioPlayer.src = b64AudioFile;
@@ -88,7 +86,7 @@
 
         async function getSound(text) {
             try {
-                const response = await fetch('https://api.englishtop.vn/api/chats/tts', {
+                const response = await fetch('https://api.englishtest.vn/api/chats/tts', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -100,10 +98,10 @@
                         'access-control-allow-credentials': 'true',
                         'access-control-allow-headers': '*',
                         'access-control-allow-methods': '*',
-                        'oorigin': 'https://englishtop.vn'
+                        'oorigin': 'https://englishtest.vn'
 
                     },
-                    body: w === 3 ? JSON.stringify({text, lang: "vi"}) :JSON.stringify({text, lang: "en"})
+                    body: lang ? JSON.stringify({text, lang: "en"}) : JSON.stringify({text, lang: "vi"})
                 });
 
                 if (!response.ok) {
@@ -121,9 +119,7 @@
 
 
         function changeLang() {
-            let temp = w;
-            w = m;
-            m = temp;
+            lang ? lang = false : lang = true;
             showWord();
         }
 
@@ -145,7 +141,7 @@
     <p id="result"></p>
     <p id="answer"></p>
     <div style="visibility: hidden">
-        <audio id="audio-player" controls ></audio>
+        <audio id="audio-player" controls></audio>
     </div>
 </div>
 </body>

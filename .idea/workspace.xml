@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc57eb3d-3804-4e9a-9d7d-30775d3f55f5" name="Changes" comment="update">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/custom.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/note.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="cc57eb3d-3804-4e9a-9d7d-30775d3f55f5" name="Changes" comment="Tam thoi on, chua co link0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/HomeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/WordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/WordController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/WordRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/WordRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/OllamaServicePromt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/OllamaServicePromt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/WordService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/WordService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/vocab.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/vocab.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,8 +19,8 @@
       <list>
         <option value="Interface" />
         <option value="CSS File" />
-        <option value="HTML File" />
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -176,7 +168,18 @@
       <workItem from="1740925357637" duration="5527000" />
       <workItem from="1741401778702" duration="6584000" />
       <workItem from="1741511436653" duration="2463000" />
-      <workItem from="1741532592434" duration="3299000" />
+      <workItem from="1741532592434" duration="3401000" />
+      <workItem from="1741960945036" duration="741000" />
+      <workItem from="1742005697186" duration="6901000" />
+      <workItem from="1742132922283" duration="3620000" />
+      <workItem from="1742305103351" duration="5720000" />
+      <workItem from="1742609351162" duration="3660000" />
+      <workItem from="1742614953862" duration="2671000" />
+      <workItem from="1742701646835" duration="155000" />
+      <workItem from="1742702125230" duration="9000" />
+      <workItem from="1742702475221" duration="818000" />
+      <workItem from="1742737944134" duration="1278000" />
+      <workItem from="1742917294148" duration="2006000" />
     </task>
     <task id="LOCAL-00001" summary="Update function check word">
       <option name="closed" value="true" />
@@ -202,7 +205,47 @@
       <option name="project" value="LOCAL" />
       <updated>1740930909548</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="am thanh">
+      <option name="closed" value="true" />
+      <created>1741536021389</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1741536021389</updated>
+    </task>
+    <task id="LOCAL-00005" summary="dich">
+      <option name="closed" value="true" />
+      <created>1742012664397</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1742012664397</updated>
+    </task>
+    <task id="LOCAL-00006" summary="dich 2">
+      <option name="closed" value="true" />
+      <created>1742137838723</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1742137838723</updated>
+    </task>
+    <task id="LOCAL-00007" summary="12 thi co ban">
+      <option name="closed" value="true" />
+      <created>1742609434866</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1742609434866</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Tam thoi on, chua co link">
+      <option name="closed" value="true" />
+      <created>1742701720258</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1742701720258</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -222,15 +265,19 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Update function check word" />
     <MESSAGE value="update" />
-    <option name="LAST_COMMIT_MESSAGE" value="update" />
+    <MESSAGE value="am thanh" />
+    <MESSAGE value="dich" />
+    <MESSAGE value="dich 2" />
+    <MESSAGE value="12 thi co ban" />
+    <MESSAGE value="Tam thoi on, chua co link" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tam thoi on, chua co link" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/main/resources/templates/vocab.html</url>
-          <line>105</line>
-          <properties lambdaOrdinal="-1" />
+          <line>103</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

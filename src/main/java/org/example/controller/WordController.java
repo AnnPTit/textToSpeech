@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import org.example.domain.Word;
 import org.example.dto.SentenceDto;
 import org.example.service.OllamaService;
 import org.example.service.WordService;
@@ -8,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,11 +24,12 @@ public class WordController {
     private OllamaService ollamaService;
 
 
-
-//    @GetMapping("/vocab/{topic}")
-//    public List<String> getVocab(@PathVariable String topic) {
-//        return wordService.showTopicContent(topic);
-//    }
+    @GetMapping("/vocab/{topic}")
+    public List<Word> getVocab(@PathVariable String topic) {
+        return wordService.showTopicContent(topic);
+//        List<String> vocab = list.stream().map(item -> item.getWord()).toList();
+//        return vocab;
+    }
 
     @PostMapping(value = "/gramar", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Mono<String> checkGramar(@RequestBody Map<String, String> request) {
