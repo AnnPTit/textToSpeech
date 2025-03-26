@@ -116,6 +116,11 @@
             <artifactId>jakarta.annotation-api</artifactId>
         </dependency>
 
+        <!-- Kafka Spring Boot Starter -->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
 
     </dependencies>
 
