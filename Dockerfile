@@ -5,7 +5,7 @@ FROM eclipse-temurin:17-jdk-alpine
 WORKDIR /app
 
 # 3. Copy file JAR từ project vào container
-COPY target/*.jar app.jar
+COPY target/big-ex-1.0-SNAPSHOT-jar-with-dependencies.jar app.jar
 
 # 4. Chạy ứng dụng Spring Boot
 CMD ["java", "-jar", "app.jar"]
