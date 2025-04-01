@@ -114,4 +114,10 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="10" author="an">
+        <addColumn tableName="word">
+            <column name="created_date" type="datetime"></column>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

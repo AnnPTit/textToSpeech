@@ -7,7 +7,9 @@
     <link rel="stylesheet" th:href="@{/css/custom.css}">
     <script>
         let data = [];
+        let curentPage = 0;
 
+        // Ham them tu
         async function handleGramar() {
             const word = document.getElementById("word").value.trim();
             const meaning = document.getElementById("meaning").value.trim();
@@ -22,7 +24,7 @@
             }
 
             try {
-                const response = await fetch("/api/note", {
+                const response = await fetch("/api/note/0", {
                     method: "POST",
                     headers: {"Content-Type": "application/json"},
                     body: JSON.stringify({
@@ -53,6 +55,24 @@
                 }
             }
         }
+
+        function previous() {
+            curentPage === 0 ? window.location.href = 0 : window.location.href = --curentPage;
+        }
+
+        function next() {
+            // curentPage = curentPage++;
+            window.location.href = ++curentPage;
+        }
+
+        function setPaginate() {
+            const totalPages = document.getElementById("page");
+            // .getAttribute("total-pages");
+            console.log(totalPages);
+
+        }
+
+        // setPaginate();
     </script>
 
 </head>
@@ -80,7 +100,9 @@
         onclick="handleGramar()">
     Lưu
 </button>
-
+<p id="page"></p>
+<button onclick="previous()"><</button>
+<button onclick="next()">></button>
 <ul>
     <li th:each="item : ${dataLts}"
         th:text="${item.getWord()} + ' - (' + ${item.getLexicalCategory()} + ')' + ' - ' + ' | ' + ${item.getMeaning()}"

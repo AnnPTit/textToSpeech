@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
@@ -39,10 +40,17 @@ public class HomeController {
         return "vocab";
     }
 
-    @GetMapping("/note")
-    public String note(Model model) {
+    @GetMapping("/note/{page}")
+    public String note(Model model, @PathVariable String page) {
         model.addAttribute("lexicalCategory", wordService.lexicalCategory());
-        model.addAttribute("dataLts", wordService.showTopicContent("self-study"));
+        int pageSize = 10;
+        int totalResults = wordService.getTotalElement("self-study").size();
+        int totalPages = totalResults % pageSize == 0 ? totalResults / pageSize : totalResults / pageSize + 1;
+        if (Integer.parseInt(page) > totalPages) {
+            page = "1";
+        }
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("dataLts", wordService.showWordStudy((Integer.parseInt(page)*pageSize)+1));
         return "note";
     }
 

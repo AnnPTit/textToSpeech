@@ -28,6 +28,14 @@ public class WordService {
         return repository.showTopicContent(topic);
     }
 
+    public List<Word> showWordStudy(Integer offset) {
+        return repository.showWordStudy(offset);
+    }
+
+    public List<Word> getTotalElement(String topic) {
+        return repository.getTotalElement(topic);
+    }
+
     public List<String> lexicalCategory() {
         return repository.lexicalCategory();
     }
@@ -44,6 +52,7 @@ public class WordService {
                     .lexicalCategory(lexical)
                     .id(UUID.randomUUID().toString().replace("-", ""))
                     .isStudied(null)
+                    .createdDate(new Date())
                     .build();
             repository.save(entity);
             return "ok";

@@ -27,8 +27,6 @@ public class WordController {
     @GetMapping("/vocab/{topic}")
     public List<Word> getVocab(@PathVariable String topic) {
         return wordService.showTopicContent(topic);
-//        List<String> vocab = list.stream().map(item -> item.getWord()).toList();
-//        return vocab;
     }
 
     @PostMapping(value = "/gramar", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
