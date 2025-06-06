@@ -86,7 +86,7 @@
 
         async function getSound(text) {
             try {
-                const response = await fetch('https://api.englishtest.vn/api/chats/tts', {
+                const response = await fetch('https://api.englishvocabulary.net/api/chats/tts', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -98,7 +98,7 @@
                         'access-control-allow-credentials': 'true',
                         'access-control-allow-headers': '*',
                         'access-control-allow-methods': '*',
-                        'oorigin': 'https://englishtest.vn'
+                        'oorigin': 'https://englishvocabulary.net'
 
                     },
                     body: lang ? JSON.stringify({text, lang: "en"}) : JSON.stringify({text, lang: "vi"})
@@ -129,7 +129,7 @@
 <h1>Học Từ Vựng</h1>
 <div id="card">
     <h2 id="word">Loading...</h2>
-    <button onclick="makeSound()">Âm Thanh nè</button>
+    <button onclick="makeSound()">Âm Thanh</button>
     <button onclick="changeLang()">Chuyển đổi ngôn ngữ</button>
     <h4 id="wordType">Loading...</h4>
     <input type="text" id="user-input"

@@ -25,6 +25,7 @@
 </head>
 <body>
 <h2>Ghép lại câu đúng</h2>
+<button onclick="changePage()">Thêm mới câu</button>
 <h4 id="sentenceQou" style="text-decoration: underline"></h4>
 <div id="wordContainer"></div>
 <h4>Ghép lại ở đây:</h4>
@@ -110,6 +111,10 @@
     }
 
     getShuffleSentence();
+
+    const changePage = () => {
+        window.location.href = "/word-rearrange-create"
+    }
 </script>
 </body>
 </html>

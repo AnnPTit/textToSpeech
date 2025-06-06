@@ -1,15 +1,18 @@
 package org.example.controller;
 
+import org.example.domain.Sentence;
 import org.example.domain.Word;
+import org.example.dto.ResponseDto;
 import org.example.dto.SentenceDto;
 import org.example.service.OllamaService;
+import org.example.service.SentenceService;
 import org.example.service.WordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +25,9 @@ public class WordController {
 
     @Autowired
     private OllamaService ollamaService;
+
+    @Autowired
+    private SentenceService sentenceService;
 
 
     @GetMapping("/vocab/{topic}")
@@ -57,6 +63,20 @@ public class WordController {
 
     @GetMapping("/sentence/generate")
     private List<SentenceDto> generate() {
-        return wordService.generateSentence();
+        return sentenceService.generateSentence();
+    }
+
+
+
+    @PostMapping("/saveSentence")
+    public ResponseEntity<ResponseDto> saveSentence(@RequestBody Sentence sentence) {
+        sentence.setTenses("simple present");
+        return ResponseEntity.ok(sentenceService.saveOrUpdate(sentence)); // Có thể check id null thì thêm, ngược lại thì update
+    }
+
+    @PostMapping("/deleteSentence/{id}")
+    @ResponseBody
+    public void deleteSentence(@PathVariable Long id) {
+        sentenceService.delete(id);
     }
 }

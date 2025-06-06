@@ -7,7 +7,6 @@
     <link rel="stylesheet" th:href="@{/css/custom.css}">
     <script>
         let data = [];
-        let curentPage = 0;
 
         // Ham them tu
         async function handleGramar() {
@@ -24,7 +23,7 @@
             }
 
             try {
-                const response = await fetch("/api/note/0", {
+                const response = await fetch("/api/note", {
                     method: "POST",
                     headers: {"Content-Type": "application/json"},
                     body: JSON.stringify({
@@ -57,18 +56,10 @@
         }
 
         function previous() {
-            curentPage === 0 ? window.location.href = 0 : window.location.href = --curentPage;
+
         }
 
         function next() {
-            // curentPage = curentPage++;
-            window.location.href = ++curentPage;
-        }
-
-        function setPaginate() {
-            const totalPages = document.getElementById("page");
-            // .getAttribute("total-pages");
-            console.log(totalPages);
 
         }
 
