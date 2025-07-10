@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.domain.Sentence;
 import org.example.domain.Word;
 import org.example.dto.ResponseDto;
@@ -18,7 +19,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin // Cho phép frontend gọi API từ trình duyệt
+@CrossOrigin(origins = "*") // Cho mọi nguồn gọi
 public class WordController {
     @Autowired
     private WordService wordService;
@@ -78,5 +79,11 @@ public class WordController {
     @ResponseBody
     public void deleteSentence(@PathVariable Long id) {
         sentenceService.delete(id);
+    }
+
+    @PostMapping("/create")
+    private String create(@RequestBody Word word) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return wordService.note(objectMapper.convertValue(word, Map.class));
     }
 }
