@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.domain.Word;
 import org.example.dto.SentenceDto;
 import org.example.service.OllamaService;
@@ -15,7 +16,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin // Cho phép frontend gọi API từ trình duyệt
+@CrossOrigin(origins = "*") // Cho mọi nguồn gọi
 public class WordController {
     @Autowired
     private WordService wordService;
@@ -60,5 +61,11 @@ public class WordController {
     @GetMapping("/sentence/generate")
     private List<SentenceDto> generate() {
         return wordService.generateSentence();
+    }
+
+    @PostMapping("/create")
+    private String create(@RequestBody Word word) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return wordService.note(objectMapper.convertValue(word, Map.class));
     }
 }

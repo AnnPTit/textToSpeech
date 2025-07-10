@@ -14,31 +14,31 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-@Configuration
+//@Configuration
 public class KafkaAdminConfig {
-    @Bean
-    public AdminClient adminClient() {
-        Properties props = new Properties();
-        props.put("bootstrap.servers", "localhost:9092");
-        return AdminClient.create(props);
-    }
-
-    @Bean
-    public NewTopic topicExample() {
-        return new NewTopic("my_topic", 3, (short) 1);
-    }
-
-    @Bean
-    public ProducerFactory<String, String> producerFactory() {
-        Map<String, Object> configProps = new HashMap<>();
-        configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092"); // Thay bằng Kafka broker của bạn
-        configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-        configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-        return new DefaultKafkaProducerFactory<>(configProps);
-    }
-
-    @Bean
-    public KafkaTemplate<String, String> kafkaTemplate() {
-        return new KafkaTemplate<>(producerFactory());
-    }
+//    @Bean
+//    public AdminClient adminClient() {
+//        Properties props = new Properties();
+//        props.put("bootstrap.servers", "localhost:9092");
+//        return AdminClient.create(props);
+//    }
+//
+//    @Bean
+//    public NewTopic topicExample() {
+//        return new NewTopic("my_topic", 3, (short) 1);
+//    }
+//
+//    @Bean
+//    public ProducerFactory<String, String> producerFactory() {
+//        Map<String, Object> configProps = new HashMap<>();
+//        configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092"); // Thay bằng Kafka broker của bạn
+//        configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+//        configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+//        return new DefaultKafkaProducerFactory<>(configProps);
+//    }
+//
+//    @Bean
+//    public KafkaTemplate<String, String> kafkaTemplate() {
+//        return new KafkaTemplate<>(producerFactory());
+//    }
 }
