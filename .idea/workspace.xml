@@ -4,17 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc57eb3d-3804-4e9a-9d7d-30775d3f55f5" name="Changes" comment="Tam thoi on, chua co link0">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/service/thread/DataProcessingThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="cc57eb3d-3804-4e9a-9d7d-30775d3f55f5" name="Changes" comment="thread va extension">
+      <change afterPath="$PROJECT_DIR$/my-extension/vocab.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/WordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/WordController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/kafka/KafkaAdminClientUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/kafka/KafkaAdminClientUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/kafka/KafkaAdminConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/kafka/KafkaAdminConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/kafka/KafkaConsumerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/kafka/KafkaConsumerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-extension/popup.html" beforeDir="false" afterPath="$PROJECT_DIR$/my-extension/popup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-extension/popup.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-extension/popup.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +22,7 @@
         <option value="CSS File" />
         <option value="HTML File" />
         <option value="Class" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -39,6 +34,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;AnnPTit&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/AnnPTit/textToSpeech.git&quot;,
+    &quot;accountId&quot;: &quot;03b3f348-0dc1-4b92-acca-68d6f5ded0f2&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -47,46 +54,47 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Debug",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Maven.big-ex [clean,install].executor": "Run",
-    "Maven.big-ex [clean].executor": "Run",
-    "Maven.big-ex [liquibase:update].executor": "Run",
-    "Maven.big-ex [spring-boot:run].executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.Main.executor": "Debug",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "thread",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/TuHocSpringBoot_persional_project/textToSpeech/src/main/resources/static/css",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Problems",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.48965517",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Debug&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Maven.big-ex [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.big-ex [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.big-ex [liquibase:update].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.big-ex [spring-boot:run].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.Main.executor&quot;: &quot;Debug&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;thread&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/VTIT/Downloads/textToSpeech&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.48965517&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\VTIT\Downloads\textToSpeech" />
       <recent name="D:\TuHocSpringBoot_persional_project\textToSpeech\src\main\resources\static\css" />
       <recent name="D:\TuHocSpringBoot_persional_project\textToSpeech\src\main\resources\templates" />
     </key>
@@ -191,7 +199,8 @@
       <workItem from="1742702475221" duration="818000" />
       <workItem from="1742737944134" duration="1278000" />
       <workItem from="1742917294148" duration="2006000" />
-      <workItem from="1752111840268" duration="12160000" />
+      <workItem from="1752111840268" duration="18501000" />
+      <workItem from="1752195767092" duration="5179000" />
     </task>
     <task id="LOCAL-00001" summary="Update function check word">
       <option name="closed" value="true" />
@@ -257,7 +266,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742701720258</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="thread va extension">
+      <option name="closed" value="true" />
+      <created>1752135366461</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1752135366461</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,7 +299,8 @@
     <MESSAGE value="dich 2" />
     <MESSAGE value="12 thi co ban" />
     <MESSAGE value="Tam thoi on, chua co link" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tam thoi on, chua co link" />
+    <MESSAGE value="thread va extension" />
+    <option name="LAST_COMMIT_MESSAGE" value="thread va extension" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
