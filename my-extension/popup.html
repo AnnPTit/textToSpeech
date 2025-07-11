@@ -1,23 +1,103 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Từ Vựng</title>
-  <style>
-    body { width: 300px; padding: 10px; font-family: sans-serif; }
-    ul { padding-left: 20px; }
-    input { width: 100%; margin-bottom: 8px; }
-  </style>
+    <meta charset="UTF-8"/>
+    <title>Từ Vựng</title>
+    <style>
+        body {
+            width: 320px;
+            padding: 10px;
+            font-family: sans-serif;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 6px;
+            text-align: center;
+            cursor: pointer;
+            background: #eee;
+            border: none;
+            outline: none;
+        }
+
+        .tab-button.active {
+            background: #fff;
+            font-weight: bold;
+            border-bottom: 2px solid blue;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        input {
+            width: 100%;
+            margin-bottom: 8px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+    </style>
 </head>
 <body>
-  <h3>📘 Danh sách từ vựng</h3>
-  <ul id="vocabList"></ul>
+<!-- Tabs Header -->
+<div class="tabs">
+    <button class="tab-button active" data-tab="tab1">📘 Từ vựng</button>
+    <button class="tab-button" data-tab="tab2">📊 Thống kê</button>
+    <button class="tab-button" id="tab-test" data-tab="tab3">💡 Kiểm tra</button>
+</div>
 
-  <h4>➕ Thêm từ mới</h4>
-  <input id="inputEnglish" placeholder="Tiếng Anh" />
-  <input id="inputVietNamese" placeholder="Tiếng Việt" />
-  <button id="clickMe">Thêm</button>
+<!-- Tab 1 Content -->
+<div id="tab1" class="tab-content active">
+    <h3>📘 Danh sách từ vựng</h3>
+    <ul id="vocabList"></ul>
 
-  <script src="popup.js"></script>
+    <h4>➕ Thêm từ mới</h4>
+    <input id="inputEnglish" placeholder="Tiếng Anh"/>
+    <input id="inputVietNamese" placeholder="Tiếng Việt"/>
+    <button id="clickMe">Thêm</button>
+</div>
+
+<!-- Tab 2 Content -->
+<div id="tab2" class="tab-content">
+    <h3>📊 Thống kê</h3>
+    <p>Chức năng đang phát triển...</p>
+</div>
+
+<!-- Tab 3 Kiểm tra -->
+<div id="tab3" class="tab-content">
+    <div id="card">
+        <h2 id="word">Loading...</h2>
+        <button onclick="makeSound()">Âm Thanh nè</button>
+        <button onclick="changeLang()">Chuyển đổi ngôn ngữ</button>
+        <h4 id="wordType">Loading...</h4>
+        <input type="text" id="user-input"
+               placeholder="Nhập câu trả lời"
+               onclick="handleKeyPress(event)"
+               style="width: 100%; max-width: 200px; padding: 12px 15px; font-size: 16px; border: 2px solid #ccc; border-radius: 25px; outline: none; transition: 0.3s ease-in-out; box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);"
+               onfocus="this.style.borderColor='#4CAF50'; this.style.boxShadow='0px 4px 8px rgba(76, 175, 80, 0.3)';"
+               onblur="this.style.borderColor='#ccc'; this.style.boxShadow='0px 2px 5px rgba(0, 0, 0, 0.1)';">
+        <p id="result"></p>
+        <p id="answer"></p>
+        <div style="visibility: hidden">
+            <audio id="audio-player" controls></audio>
+        </div>
+        <button id="test-btn">Kiểm tra</button>
+    </div>
+</div>
+
+<script src="popup.js"></script>
+<script src="vocab.js"></script>
 </body>
 </html>

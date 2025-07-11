@@ -58,3 +58,27 @@ document.getElementById("clickMe").addEventListener("click", async () => {
     alert("Tạo từ thất bại");
   }
 });
+
+
+// Xử lý chuyển tab
+document.querySelectorAll(".tab-button").forEach(button => {
+  button.addEventListener("click", () => {
+    const tabId = button.dataset.tab;
+
+    // Ẩn tất cả tab
+    document.querySelectorAll(".tab-content").forEach(tc => {
+      tc.classList.remove("active");
+    });
+
+    // Gỡ active của tất cả nút
+    document.querySelectorAll(".tab-button").forEach(tb => {
+      tb.classList.remove("active");
+    });
+
+    // Kích hoạt tab được chọn
+    document.getElementById(tabId).classList.add("active");
+    button.classList.add("active");
+  });
+});
+
+
