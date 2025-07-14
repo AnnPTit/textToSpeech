@@ -1,9 +1,5 @@
 package org.example;
 
-import org.example.service.MainService;
-import org.example.service.kafka.KafkaAdminClientUtil;
-import org.example.service.kafka.KafkaConsumerService;
-import org.example.service.thread.DataProcessingThread;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
